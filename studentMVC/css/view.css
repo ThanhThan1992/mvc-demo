@@ -1,0 +1,22 @@
+
+#main
+{
+    padding: 5px;
+    padding-left:  15px;
+    padding-right: 15px;
+    background-color:yellowgreen;
+    border-radius: 0 0 5px 5px;
+    display:inline-block; 
+    width:1000px;
+    margin: auto;
+    align:  center
+}
+
+#test
+{
+    align: center
+}
+body
+{
+    margin-top: 0px;
+}

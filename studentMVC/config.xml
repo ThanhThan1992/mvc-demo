@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <database>
+        <host>localhost</host>
+        <port>5432</port>
+        <db_name>TEST</db_name>
+        <username>postgres</username>
+        <password>root</password>
+    </database>
+</config>
