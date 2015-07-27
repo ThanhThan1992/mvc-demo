@@ -32,7 +32,7 @@
                 <td><?php echo $age; ?></td>
                 <td><?php echo $porn; ?></td>
                 <td><a href="index.php?edit=<?php echo $id; ?>">Edit</a></td>
-                <td><a href="delete.php?delete=<?php echo $id; ?>">delete</a></td>
+                <td><a href="index.php?delete=<?php echo $id; ?>">delete</a></td>
             </tr>
                 <?php } ?>
             </table>

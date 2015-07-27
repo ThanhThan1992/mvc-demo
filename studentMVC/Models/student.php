@@ -81,6 +81,25 @@ class student
         else { return FALSE; }
         return TRUE ;
     }
+    public function getOneStudentById($id,$table)
+    {
+        $query  = "SELECT * FROM $table WHERE id=$id";
+        $result = pg_query($query); 
+        //var_dump(pg_fetch_object($result));die;
+        return pg_fetch_object($result);
+    }
+    public function updateStudent($student,$id)
+    {
+        $query = "UPDATE student SET name ='$student->name',age=$student->age,porn=$student->porn WHERE id={$id}";
+        $result = pg_query($query);
+    }
+    public function deleteStudent($id)
+    {
+        $query = "DELETE FROM student WHERE  id={$id}"; 
+        //var_dump($query);
+        //die();
+        $result = pg_query($query);
+    }
 }
 ?>
 

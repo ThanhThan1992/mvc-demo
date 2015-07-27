@@ -11,25 +11,30 @@ class studentController
     {
         $this->studentModel = new student();
     }
-    /*public function inVoke()
-    {
-        $browsty = new browsty();
-        if (isset($_GET['insert']))
-        {   
-            $browsty->command('insert');
-        }
-        if (isset($_GET['edit']))
-        {   
-            $browsty->command('edit');
-        }
-     * */
     public function inVoke()
     {   
         $browsty = new browsty();
+        
         if (isset($_GET['edit']))
-        {
-            $browsty->command('edit');
-            return;
+        {   
+            if(isset($_POST['Update']))
+            {        
+                $this->updateStudentById($_POST["id"]);
+                return;
+            }
+            $id = $_GET['edit'];
+            $browsty -> setID($id);
+            $browsty -> command('edit');
+            return;    
+        }
+        if (isset($_GET['delete']))
+        {   
+           
+            $id = $_GET['delete'];
+            $this->deleteStudent($id);
+            
+            //$browsty -> command('edit');
+            return;    
         }
         if(!isset($_GET['insert']))
         {
@@ -37,15 +42,15 @@ class studentController
         }
         else 
         {
-             
-             if(isset($_POST['id']))
-             {
-                 $this->insertStudent();
-             }
-             else {
-                 $this->getViewInsertStudent();
-             }
-         }
+            if(isset($_POST['submit']))
+            {
+                $this->insertStudent();
+            }
+            else {
+                $this->getViewInsertStudent();
+            }
+        }
+          
     }
     public function viewStudent()
     {
@@ -123,6 +128,24 @@ class studentController
 		return $err.'<br />';
             }
 	}
+   }
+   function viewStudentById($id)
+   {    
+       return  $this->studentModel->getOneStudentById($id, "student");
+   }
+   function updateStudentById($id)
+   {
+       $studentUpdate = $this->studentModel->getOneStudentById($id, "student");
+       $studentUpdate->name = $_POST["name"];
+       $studentUpdate->age = $_POST["age"];
+       $studentUpdate->porn = $_POST["porn"];
+       $this->studentModel->updateStudent($studentUpdate, $id);
+       $this -> viewStudent();
+   }
+   function deleteStudent($id)
+   {
+       $this->studentModel->deleteStudent($id);
+       $this -> viewStudent();
    }
     /*public function actionInsert()
     {
